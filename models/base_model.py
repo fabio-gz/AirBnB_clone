@@ -13,10 +13,10 @@ class BaseModel():
         return ("[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__))
 
     def save(self):
-        self.update_at = datetime.datetime.now()
+        update_at = datetime.datetime.now()
 
     def to_dict(self):
-        return { 'id' : self.id,
-                 'created_at' : self.created_at.isoformat(),
-                 'updated_at': self.updated_at.isoformat()
-                 }
+        self.created_at = self.created_at.isoformat()
+        self.updated_at = self.updated_at.isoformat()
+        self.__dict__['__class__'] = self.__class__.__name__
+        return (self.__dict__)
