@@ -1,9 +1,107 @@
 #!/usr/bin/python3
 import cmd
+from models.base_model import BaseModel
+from models import storage
 
 class HBNBCommand(cmd.Cmd):
 
     prompt = '(hbnb) '
+
+    def do_create(self, line):
+        """
+        Creates a new instance of the class
+        """
+        if len(line) == 0:
+            print('** class name missing **')
+        elif line != 'BaseModel':
+            print('** class doesn\'t exist **')
+        else:
+            model = BaseModel()
+            print(model.id)
+            model.save()
+
+    def do_show(self, line):
+        """Prints string rep of an instance
+        """
+        agmt = line.split()
+
+        if len(line) == 0:
+            print('** class name missing **')
+        elif agmt[0] != 'BaseModel':
+            print('** class doesn\'t exist **')
+        elif len(agmt) < 2:
+            print('** instance id missing **')
+        else:
+            all_objs = storage.all()
+            for i in all_objs.keys():
+                if agmt[0] + '.' + agmt[1] == i:
+                    print(all_objs[i])
+                    break
+                else:
+                    print('** no instance found **')
+
+
+    def do_destroy(self, line):
+        """Deletes an instance based on the class ame and id
+        """
+        agmt = line.split()
+
+        if len(line) == 0:
+            print('** class name missing **')
+        elif agmt[0] != 'BaseModel':
+            print('** class doesn\'t exitst **')
+        elif len(agmt) < 2:
+            print('** instance id missing **')
+        else:
+            all_objs = storage.all()
+            for i in all_objs.keys():
+                if agmt[0] + '.' + agmt[1] == i:
+                    del all_objs[i]
+                    storage.save()
+                    break
+                else:
+                    print('** no instance found **')
+
+    def do_all(self, line):
+        """Prints string rep of all instances
+        """
+        agmt = line.split()
+
+        if agmt[0] != 'BaseModel':
+            print('** class doesn\'t exist **')
+        else:
+            list1 = []
+            all_objs = storage.all()
+            for key, value in all_objs.items():
+                if key == (line + '.' + value.id):
+                    list1.append(str(value))
+            print(list1)
+
+    def do_update(self, line):
+        """Updates an instance based on the class
+        name and id
+        """
+        agmt = line.split()
+
+        if len(agmt) == 0:
+            print('** class name missing **')
+        elif agmt[0] != 'BaseModel':
+            print('** class doesn\'t exist **')
+        elif len(agmt) < 2:
+            print('** instance id missing **')
+        elif len(agmt) == 2:
+            print('** attribute name missing **')
+        elif len(agmt) == 3:
+            print('** value missing **')
+        else:
+            all_objs = storage.all()
+            for i in all_objs.keys():
+                if agmt[0] + '.' + agmt[1] == i:
+                    setattr(all_objs[i], agmt[2], agmt[3])
+                    storage.save()
+                else:
+                    print('** no instance found **')
+
 
     def do_quit(self, line):
         """Exit the command line
@@ -13,6 +111,7 @@ class HBNBCommand(cmd.Cmd):
     def do_EOF(self, line):
         """Ctrl-d exit
         """
+        print('')
         return True
 
     def emptyline(self):
