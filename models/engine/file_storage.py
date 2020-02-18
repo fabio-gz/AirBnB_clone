@@ -51,7 +51,7 @@ class FileStorage:
         from models.review import Review
 
         dic = {'BaseModel': BaseModel, 'User': User, 'Place': Place,
-               'State': State, 'City': City, 'Amenity': menity,
+               'State': State, 'City': City, 'Amenity': Amenity,
                'Review': Review}
         try:
             with open(FileStorage.__file_path, mode="r") as f:
