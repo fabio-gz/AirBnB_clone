@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Serialize instances to JSON"""
+""" Serialize instances to JSON """
 from models.engine.file_storage import FileStorage
 
 storage = FileStorage()
