@@ -1,10 +1,10 @@
 #!/usr/bin/python3
-import uuid
-from datetime import datetime
-from models import storage
 """ Base_model module
 Structure base of all objects that will be created in different classes
 """
+import uuid
+from datetime import datetime
+from models import storage
 
 
 class BaseModel:
