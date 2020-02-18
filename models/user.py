@@ -1,6 +1,6 @@
 #!/usr/bin/python3
-from models.base_model import BaseModel
 """ Module User - Model base of a class User """
+from models.base_model import BaseModel
 
 
 class User(BaseModel):
