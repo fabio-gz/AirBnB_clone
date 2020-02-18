@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-""" Base_model module
+"""
+Base_model module
 Structure base of all objects that will be created in different classes
 """
 import uuid
@@ -8,9 +9,11 @@ from models import storage
 
 
 class BaseModel:
-    """ Class BaseModel of objects
+    """
+    Class BaseModel of objects
     key - value - created_at - updated_at
     """
+
     def __init__(self, *args, **kwargs):
         """ Method Init of an object """
         for key, value in kwargs.items():
