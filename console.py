@@ -1,10 +1,17 @@
 #!/usr/bin/python3
+"""
+Command line interpreter
+"""
 import cmd
 from models.base_model import BaseModel
 from models import storage
+import shlex
+
 
 class HBNBCommand(cmd.Cmd):
-
+    """
+    Class to manage the command line
+    """
     prompt = '(hbnb) '
 
     def do_create(self, line):
@@ -40,7 +47,6 @@ class HBNBCommand(cmd.Cmd):
                 else:
                     print('** no instance found **')
 
-
     def do_destroy(self, line):
         """Deletes an instance based on the class ame and id
         """
@@ -66,22 +72,26 @@ class HBNBCommand(cmd.Cmd):
         """Prints string rep of all instances
         """
         agmt = line.split()
+        list1 = []
 
         if agmt[0] != 'BaseModel':
             print('** class doesn\'t exist **')
+        elif line == "":
+            for key, value in (storage.all()).items():
+                list1.append(value)
+            print(list1)
         else:
-            list1 = []
             all_objs = storage.all()
             for key, value in all_objs.items():
                 if key == (line + '.' + value.id):
-                    list1.append(str(value))
+                    list1.append(value.__str__())
             print(list1)
 
     def do_update(self, line):
         """Updates an instance based on the class
         name and id
         """
-        agmt = line.split()
+        agmt = shlex.split(line)
 
         if len(agmt) == 0:
             print('** class name missing **')
@@ -101,7 +111,6 @@ class HBNBCommand(cmd.Cmd):
                     storage.save()
                 else:
                     print('** no instance found **')
-
 
     def do_quit(self, line):
         """Exit the command line
