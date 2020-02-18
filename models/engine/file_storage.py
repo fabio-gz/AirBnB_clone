@@ -1,8 +1,8 @@
 #!/usr/bin/python3
-import json
 """ Storage module.
 serializes instances to a JSON file and deserializes JSON file to instances
 """
+import json
 
 
 class FileStorage:
