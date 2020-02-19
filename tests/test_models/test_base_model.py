@@ -57,3 +57,11 @@ class test_BaseModel(unittest.TestCase):
         self.assertEqual(d['__class__'], 'BaseModel')
         self.assertEqual(d['created_at'], self.my_model.created_at.isoformat())
         self.assertEqual(d['updated_at'], self.my_model.updated_at.isoformat())
+
+    def test_empty_agmt(self):
+        self.my_model = BaseModel()
+        self.my_model.name = None
+        self.my_model.my_number = None
+
+        self.assertIsNone(self.my_model.name)
+        self.assertIsNone(self.my_model.my_number)
