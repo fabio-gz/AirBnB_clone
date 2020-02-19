@@ -72,7 +72,7 @@ class HBNBCommand(cmd.Cmd):
             list_class = ['BaseModel', 'User', 'Place', 'State',
                           'City', 'Amenity', 'Review']
             if agmt[0] not in list_class:
-                print("** class doesn't exitst **")
+                print("** class doesn't exist **")
             elif len(agmt) < 2:
                 print('** instance id missing **')
             else:
