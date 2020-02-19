@@ -8,6 +8,7 @@ import datetime
 from models.user import User
 from models.base_model import BaseModel
 
+
 class test_User(unittest.TestCase):
     """
     Tester for the class user

@@ -7,6 +7,7 @@ import pep8
 import datetime
 from models.amenity import Amenity
 
+
 class test_Amenity(unittest.TestCase):
     """
     Tester for the class Amenity
