@@ -43,3 +43,21 @@ class test_User(unittest.TestCase):
         """
         self.user.save()
         self.assertIsInstance(self.user.created_at, datetime.datetime)
+
+    def test_dict(self):
+        """Test to check the dictionary created
+        """
+        self.assertIn('password', self.user.__dict__)
+        self.assertIn('email', self.user.__dict__)
+        self.assertIn('first_name', self.user.__dict__)
+        self.assertIn('last_name', self.user.__dict__)
+
+    def test_empty_agmt(self):
+        """Test if the data provided is None
+        """
+        self.user = User()
+        self.user.email = None
+        self.user.password = None
+
+        self.assertIsNone(self.user.email)
+        self.assertIsNone(self.user.password)
