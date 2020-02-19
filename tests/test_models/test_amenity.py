@@ -4,7 +4,8 @@ Test for the Amenity Class
 """
 import unittest
 import pep8
-from models.base_mode import BaseModel
+import datetime
+from models.amenity import Amenity
 
 class test_Amenity(unittest.TestCase):
     """
@@ -36,3 +37,14 @@ class test_Amenity(unittest.TestCase):
         """
         self.amenity.save()
         self.assertIsInstance(self.amenity.created_at, datetime.datetime)
+
+    def test_dict(self):
+        """Test the output of the dictionary
+        """
+        self.assertIn('name', self.amenity.__dict__)
+
+    def test_empty_agmt(self):
+        """test for the none argument
+        """
+        self.amenity.name = None
+        self.assertIsNone(self.amenity.name)
