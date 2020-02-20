@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+"""
+creates FileStorage instance
+"""
 from models.engine.file_storage import FileStorage
 
 
