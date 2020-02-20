@@ -42,11 +42,22 @@ class test_BaseModel(unittest.TestCase):
         """test save method to update instance attribute
         """
         self.my_model = BaseModel()
+        self.my_model.name = 'Skywalker'
         self.my_model.save()
+        d = self.my_model.to_dict()
 
         self.assertIsInstance(self.my_model.created_at, datetime.datetime)
         self.assertIsInstance(self.my_model.updated_at, datetime.datetime)
         self.assertNotEqual(self.my_model.created_at, self.my_model.updated_at)
+        self.assertEqual(d['name'], 'Skywalker')
+
+
+    def test_str_(self):
+        """
+        test the str representation
+        """
+        self.my_model = BaseModel()
+        self.assertEqual(str(self.my_model.__class__.__name__), 'BaseModel')
 
     def test_to_dict(self):
         """test toc check dictionary values of the instance
