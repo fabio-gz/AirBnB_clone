@@ -39,7 +39,7 @@ class HBNBCommand(cmd.Cmd):
                         key = str(key).split('.')
                         if key[0] == string[0]:
                             cant += 1
-                    print(can)
+                    print(cant)
                     return('', '', '')
                 else:
                     if (string[1] == '.all()'):
