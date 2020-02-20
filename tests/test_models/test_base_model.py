@@ -20,6 +20,15 @@ class test_BaseModel(unittest.TestCase):
         self.my_model.name = 'Skywalker'
         self.my_model.my_number = 70
 
+    @classmethod
+    def tearDownClass(self):
+        """End the test
+        """
+        try:
+            remove("file.json")
+        except:
+            pass
+
     def Testpep8(self):
         """test for pep8 styleguide
         """
@@ -51,6 +60,11 @@ class test_BaseModel(unittest.TestCase):
         self.assertNotEqual(self.my_model.created_at, self.my_model.updated_at)
         self.assertEqual(d['name'], 'Skywalker')
 
+        self.my_model.name = 'Vader'
+        self.my_model.save()
+        d2 = self.my_model.to_dict()
+        self.assertEqual(d['created_at'], d2['created_at'])
+
 
     def test_str_(self):
         """
@@ -70,9 +84,9 @@ class test_BaseModel(unittest.TestCase):
         self.assertEqual(d['updated_at'], self.my_model.updated_at.isoformat())
 
     def test_empty_agmt(self):
-        self.my_model = BaseModel()
-        self.my_model.name = None
-        self.my_model.my_number = None
-
-        self.assertIsNone(self.my_model.name)
-        self.assertIsNone(self.my_model.my_number)
+        """No argument passes
+        """
+        with self.assertRaises(TypeError) as e:
+            BaseModel.__init__()
+        self.assertEqual("__init__() missing 1 required"+
+                         " positional argument: 'self'", str(e.exception))
