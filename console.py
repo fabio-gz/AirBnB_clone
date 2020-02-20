@@ -21,6 +21,41 @@ class HBNBCommand(cmd.Cmd):
     """
     prompt = '(hbnb) '
 
+    def parseline(self, line):
+        """ Parseline, compose a string in a valid format and
+        create a right formar of the command """
+        list_cmd = ['create', 'show', 'destroy', 'all', 'update']
+        list_class = ['BaseModel', 'User', 'Place', 'State',
+                      'City', 'Amenity', 'Review']
+        string = cmd.Cmd.parseline(self, line)
+        if string[0] in list_cmd or string[0] not in list_class:
+            return string
+        else:
+            if string[0] in list_class:
+                if string[1] == '.count()':
+                    cant = 0
+                    dic = storage.all()
+                    for key, value in dic.items():
+                        key = str(key).split('.')
+                        if key[0] == string[0]:
+                            cant += 1
+                    print(can)
+                    return('', '', '')
+                else:
+                    if (string[1] == '.all()'):
+                        a, b, c = (string[1])[1:-2], string[0], string
+                        return (a, b, c)
+                    else:
+                        if (string[1])[1:5] == 'show':
+                            code_class = str(string[1].split('"')[1])
+                            a = (string[1])[1:5]
+                        elif (string[1])[1:8] == 'destroy':
+                            code_class = str(string[1].split('"')[1])
+                            a = (string[1])[1:8]
+                        st = string[0] + ' ' + code_class
+                        b, c = st, line
+                        return (a, b, c)
+
     def do_create(self, line):
         """
         Creates a new instance of the class
@@ -137,19 +172,16 @@ class HBNBCommand(cmd.Cmd):
                                     storage.save()
 
     def do_quit(self, line):
-        """Exit the command line
-        """
+        """Exit the command line """
         return True
 
     def do_EOF(self, line):
-        """Ctrl-d exit
-        """
+        """Ctrl-d exit """
         print('')
         return True
 
     def emptyline(self):
-        """empty line doesn't execute anything
-        """
+        """empty line doesn't execute anything """
         pass
 
 if __name__ == '__main__':
