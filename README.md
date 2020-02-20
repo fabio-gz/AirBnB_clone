@@ -22,9 +22,11 @@ This is the first step on the project to create a fully functional Airbnb clone.
     git clone https://github.com/fabio-gz/AirBnB_clone.git
 
    It can be use in the interactive mode
+
 ![enter image description here](https://i.ibb.co/cCNNbcK/interative-console.png)
 
 And non-interative mode
+
 ![enter image description here](https://i.ibb.co/cCNNbcK/interative-console.png%20https://i.ibb.co/94hRF7C/non-interactive-console.png)
 
 ## Exit
@@ -33,4 +35,3 @@ In order to exit the console, you can type the command **quit** or use the keyst
 ## Authors
 
 Cristian Hurtado, Fabio Gomez
-# AirBnB_clone
