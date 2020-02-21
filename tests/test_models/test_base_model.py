@@ -33,7 +33,10 @@ class test_BaseModel(unittest.TestCase):
         """test for pep8 styleguide
         """
         pep8style = pep8.StyleGuide(quiet=True)
-        result = pep8style.check_files(['models/base_model.py'])
+        result = pep8style.check_files(['models/base_model.py',
+                                        'models/user.py', 'models/amenity.py',
+                                        'models/city.py', 'models/state.py',
+                                        'models/place.py', 'models/review.py'])
         self.assertEqual(result.total_errors, 0,
                          'Found code style errors (and warnings).')
 
@@ -71,7 +74,9 @@ class test_BaseModel(unittest.TestCase):
         test the str representation
         """
         self.my_model = BaseModel()
-        self.assertEqual(str(self.my_model.__class__.__name__), 'BaseModel')
+        srep = ("[{}] ({}) {}".format(self.my_model.__class__.__name__,
+                                      self.my_model.id, self.my_model.__dict__))
+        self.assertEqual(srep, str(self.my_model))
 
     def test_to_dict(self):
         """test toc check dictionary values of the instance
