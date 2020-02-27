@@ -28,7 +28,6 @@ class HBNBCommand(cmd.Cmd):
         list_class = ['BaseModel', 'User', 'Place', 'State',
                       'City', 'Amenity', 'Review']
         string = cmd.Cmd.parseline(self, line)
-        print("string: {}".format(string))
         if string[0] in list_cmd or string[0] not in list_class:
             return string
         else:
@@ -54,7 +53,6 @@ class HBNBCommand(cmd.Cmd):
                         new_str = string[0] + ' ' + code_class + ' ' + \
                             key + ' ' + str('"' + value + '"')
                         return ((string[1])[1:7], new_str, line)
-
                     else:
                         if (string[1])[1:5] == 'show':
                             code_class = str(string[1].split('"')[1])
